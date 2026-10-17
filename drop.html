@@ -5838,5 +5838,107 @@ var relmsg = msg.replace(/ /g,"%20");
     
 <!-- partial -->
 
+<style>
+  #signup-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+    padding: 14px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: #1769ff;
+    color: white;
+    font: 600 16px Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 16px #0003;
+  }
 
+  #signup-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: #0008;
+  }
+
+  #signup-popup.open {
+    display: flex;
+  }
+
+  #signup-box {
+    position: relative;
+    width: min(640px, 100%);
+    height: min(560px, 90vh);
+    overflow: hidden;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 8px 32px #0004;
+  }
+
+  #signup-box iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  #signup-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+</style>
+
+<button id="signup-button" type="button">Sign up</button>
+
+<div id="signup-popup" role="dialog" aria-modal="true" aria-label="Sign-up form">
+  <div id="signup-box">
+    <button id="signup-close" type="button" aria-label="Close">&times;</button>
+    <iframe
+      src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__6pWWqRUQlc4VE5EUFRaQ1JEUzQzMjA0WUg5ODlNNy4u&embed=true"
+      title="Sign-up form"><form id="signup-form">
+  <label>
+    Name
+    <input name="name" type="text" required>
+  </label>
+
+  <label>
+    Email
+    <input name="email" type="email" required>
+  </label>
+
+  <button type="submit">Submit</button>
+  <p id="form-message" role="status"></p>
+</form>]]
+
+    </iframe>
+  </div>
+</div>
+
+<script>
+  const popup = document.getElementById("signup-popup");
+
+  document.getElementById("signup-button").onclick = () =>
+    popup.classList.add("open");
+
+  document.getElementById("signup-close").onclick = () =>
+    popup.classList.remove("open");
+
+  popup.onclick = (event) => {
+    if (event.target === popup) popup.classList.remove("open");
+  };
+</script>
+</body>
+</html>
 
